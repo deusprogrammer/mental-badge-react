@@ -1,3 +1,8 @@
+body {
+  background-color: black;
+  color: white;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +40,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form-table tr > td:first-child {
+  font-weight: bolder;
 }
