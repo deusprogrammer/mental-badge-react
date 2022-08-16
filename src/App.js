@@ -11,7 +11,7 @@ import Dev from './devComponents/Dev';
 import './App.css';
 
 const RoutingPage = () => {
-    const [loggedInUserProfile, setLoggedInUserProfile] = useState({});
+    const [loggedInUserProfile, setLoggedInUserProfile] = useState(null);
     const navigate = useNavigate();
 
     const getUserProfile = async () => {
@@ -20,15 +20,19 @@ const RoutingPage = () => {
             return;
         }
 
-        let {data: profile} = await axios.get(`https://deusprogrammer.com/api/profile-svc/users/~self`, {
-            headers: {
-                "X-Access-Token": localStorage.getItem("accessToken")
-            }
-        });
+        try {
+            let {data: profile} = await axios.get(`https://deusprogrammer.com/api/profile-svc/users/~self`, {
+                headers: {
+                    "X-Access-Token": localStorage.getItem("accessToken")
+                }
+            });
 
-        if (profile.username !== null) {
-            setLoggedInUserProfile(profile);
-            navigate(`/profiles/${profile.username}`);
+            if (profile.username !== null) {
+                setLoggedInUserProfile(profile);
+                navigate(`/profiles/${profile.username}`);
+            }
+        } catch (error) {
+            toast("Failed to get logged in user", {type: "error"});
         }
     }
 
