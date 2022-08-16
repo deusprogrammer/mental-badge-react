@@ -29,7 +29,7 @@ const RoutingPage = () => {
 
             if (profile.username !== null) {
                 setLoggedInUserProfile(profile);
-                navigate(`/profiles/${profile.username}`);
+                navigate(`${process.env.PUBLIC_URL}/profiles/${profile.username}`);
             }
         } catch (error) {
             toast("Failed to get logged in user", {type: "error"});
@@ -62,7 +62,7 @@ const RoutingPage = () => {
             </div>
             <h1>Mental Badge Test Page</h1>
             <Routes>
-                <Route exact path={`/profiles/:username`} element={<Form />} />
+                <Route exact path={`${process.env.PUBLIC_URL}/profiles/:username`} element={<Form />} />
                 { process.env.NODE_ENV === 'development' ?
                     <Route exact path={`/dev`} element={<Dev />} /> : null
                 }
