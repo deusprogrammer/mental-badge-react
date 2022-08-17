@@ -45,7 +45,7 @@ const RoutingPage = () => {
             window.location = `https://deusprogrammer.com/util/auth/dev?redirect=${window.location.protocol}//${window.location.hostname}:${window.location.port}${process.env.PUBLIC_URL}/dev`;
             return;
         }
-        window.localStorage.setItem("twitchRedirect", "https://deusprogrammer.com/streamcrabs");
+        window.localStorage.setItem("twitchRedirect", "https://deusprogrammer.com/mental");
         window.location.replace("https://deusprogrammer.com/api/auth-svc/auth/twitch");
     }
 
