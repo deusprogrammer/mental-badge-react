@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'; 
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import {ToastContainer} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import axios from 'axios';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -64,7 +64,7 @@ const RoutingPage = () => {
             <Routes>
                 <Route exact path={`${process.env.PUBLIC_URL}/profiles/:username`} element={<Form />} />
                 { process.env.NODE_ENV === 'development' ?
-                    <Route exact path={`/dev`} element={<Dev />} /> : null
+                    <Route exact path={`${process.env.PUBLIC_URL}/dev`} element={<Dev />} /> : null
                 }
             </Routes>
         </div>

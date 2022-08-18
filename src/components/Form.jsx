@@ -39,19 +39,7 @@ export default () => {
     const updateProfile = async (field, value) => {
         console.log(field + " = " + value);
         let updated = {...profile};
-
-        if (field === "statuses") {
-            console.log("BEFORE " + updated.statuses);
-            if (!updated.statuses.includes(value)) {
-                updated.statuses.push(value);  
-            } else {
-                updated.statuses = updated.statuses.filter(status => status !== value);
-            }
-            console.log("AFTER " + updated.statuses);
-        } else {
-            updated[field] = value;    
-        }
-
+        updated[field] = value;    
         setProfile(updated);
     }
 
@@ -86,7 +74,7 @@ export default () => {
                     <tr>
                         <td>Status Effects</td>
                         <td>
-                            <select value={profile.statuses} onChange={({target: {value}}) => {updateProfile("statuses", value)}} multiple>
+                            <select value={profile.statuses} onChange={({target: {selectedOptions}}) => {updateProfile("statuses", Array.from(selectedOptions, option => option.value))}} multiple>
                                 <option value="tired">Tired</option>
                                 <option value="sick">Sick</option>
                                 <option value="hungry">Hungry</option>
